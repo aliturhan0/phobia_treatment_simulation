@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\vr-proje-son\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\vr-proje-son\\Assets\\ali_assetler\\SafetyRailManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ali_assetler\\SafetyRailManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\vr-proje-son\\Assets\\ali_assetler\\FallRespawnManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ali_assetler\\FallRespawnManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\vr-proje-son\\Assets\\ali_assetler\\Audio\\BridgeEffectTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ali_assetler\\Audio\\BridgeEffectTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,6 +35,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SafetyRailManager.cs",
+              "DocumentMoniker": "D:\\vr-proje-son\\Assets\\ali_assetler\\SafetyRailManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ali_assetler\\SafetyRailManager.cs",
+              "ToolTip": "D:\\vr-proje-son\\Assets\\ali_assetler\\SafetyRailManager.cs",
+              "RelativeToolTip": "Assets\\ali_assetler\\SafetyRailManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T23:57:12.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FallRespawnManager.cs",
+              "DocumentMoniker": "D:\\vr-proje-son\\Assets\\ali_assetler\\FallRespawnManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ali_assetler\\FallRespawnManager.cs",
+              "ToolTip": "D:\\vr-proje-son\\Assets\\ali_assetler\\FallRespawnManager.cs",
+              "RelativeToolTip": "Assets\\ali_assetler\\FallRespawnManager.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAADwv38AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T17:29:45.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BridgeEffectTrigger.cs",
               "DocumentMoniker": "D:\\vr-proje-son\\Assets\\ali_assetler\\Audio\\BridgeEffectTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\ali_assetler\\Audio\\BridgeEffectTrigger.cs",
@@ -34,12 +68,11 @@
               "RelativeToolTip": "Assets\\ali_assetler\\Audio\\BridgeEffectTrigger.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T22:43:58.08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T22:43:58.08Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "RideBridgePlatform.cs",
               "DocumentMoniker": "D:\\vr-proje-son\\Assets\\ali_assetler\\RideBridgePlatform.cs",
               "RelativeDocumentMoniker": "Assets\\ali_assetler\\RideBridgePlatform.cs",
@@ -47,12 +80,11 @@
               "RelativeToolTip": "Assets\\ali_assetler\\RideBridgePlatform.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T22:04:41.744Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T22:04:41.744Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "BridgeSwayCreak.cs",
               "DocumentMoniker": "D:\\vr-proje-son\\Assets\\ali_assetler\\Audio\\BridgeSwayCreak.cs",
               "RelativeDocumentMoniker": "Assets\\ali_assetler\\Audio\\BridgeSwayCreak.cs",
@@ -60,8 +92,7 @@
               "RelativeToolTip": "Assets\\ali_assetler\\Audio\\BridgeSwayCreak.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAmwDsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T22:03:58.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T22:03:58.883Z"
             }
           ]
         }
