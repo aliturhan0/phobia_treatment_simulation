@@ -9,6 +9,9 @@ public class BridgeFootsteps : MonoBehaviour
     [Header("Input Check (Fixes Swaying)")]
     public InputActionProperty moveInputSource; // Assign 'XRI LeftHand Locomotion/Move' here
 
+    [Header("Surface Settings")]
+    public string surfaceTag = "WoodenStep"; // STRICT: Only this tag triggers footsteps
+
     public float stepInterval = 0.5f; // Time between steps
     public float minSpeed = 0.5f;    // Increased to 0.5, ignores micro-movements
 
@@ -18,40 +21,48 @@ public class BridgeFootsteps : MonoBehaviour
 
     private float stepTimer = 0f;
 
+    void Start()
+    {
+        // Auto-assign CharacterController if empty
+        if (characterController == null) 
+            characterController = GetComponentInParent<CharacterController>();
+
+        // Auto-assign AudioSource if empty
+        if (footstepSource == null) 
+            footstepSource = GetComponent<AudioSource>();
+
+        if (characterController == null) Debug.LogError("BridgeFootsteps: CharacterController bulunamadı!");
+        if (footstepSource == null) Debug.LogError("BridgeFootsteps: AudioSource bulunamadı!");
+    }
+
     void Update()
     {
         if (!characterController || !footstepSource) return;
 
-        // 1. INPUT CHECK: Is user actually pushing the joystick?
-        bool isInputMoving = true; // Default true if no input source assigned (fallback)
+        // 1. INPUT CHECK
+        bool isInputMoving = true; 
         if (moveInputSource.action != null)
         {
             float inputMag = moveInputSource.action.ReadValue<Vector2>().magnitude;
             if (inputMag < 0.1f) isInputMoving = false;
         }
 
-        // 2. VELOCITY CHECK: Is character actually moving?
+        // 2. VELOCITY CHECK
         Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
         bool isPhysicallyMoving = horizontalVelocity.magnitude > minSpeed;
 
-        // 3. SURFACE CHECK: Are we on the Bridge?
+        // 3. SURFACE CHECK
         bool isOnBridge = false;
         RaycastHit hit;
         
-        // Debug draw to see the ray in Scene view
         Debug.DrawRay(transform.position + Vector3.up * 0.5f, Vector3.down * 2.0f, Color.red);
 
         if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out hit, 2.0f))
         {
-            // Logic: Tag IS "Bridge" OR Name contains "Bridge" (Case insensitive)
-            if (hit.collider.CompareTag("Bridge") || hit.collider.name.ToLower().Contains("bridge"))
+            // Restore Original Behavior: Check for "Bridge" tag
+            if (hit.collider.CompareTag(surfaceTag) || hit.collider.CompareTag("Bridge"))
             {
                 isOnBridge = true;
-            }
-            else
-            {
-                // DEBUG: Print what we are hitting if NOT bridge
-                // Debug.Log("Standing on: " + hit.collider.name + " (Tag: " + hit.collider.tag + ")");
             }
         }
 

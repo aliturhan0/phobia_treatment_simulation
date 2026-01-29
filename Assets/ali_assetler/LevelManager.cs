@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     [Header("Assign Parts")]
-    public GameObject victoryCanvas; // The "Congrats" UI Panel
+    public GameObject level1Canvas; // Eski VictoryCanvas (Seviye 1 Bitiş)
+    public GameObject level2Canvas; // Yeni Seviye 2 Bitiş Paneli
     public GameObject xrOrigin;      // The Player (to teleport)
 
     [Header("Level Settings")]
@@ -15,14 +16,15 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        // Hide victory screen at start
-        if (victoryCanvas) victoryCanvas.SetActive(false);
+        // Hide victory screens at start
+        if (level1Canvas) level1Canvas.SetActive(false);
+        if (level2Canvas) level2Canvas.SetActive(false);
         
         // Auto-find XR Origin if missing (Common Helper)
         if (xrOrigin == null) xrOrigin = GameObject.Find("XR Origin");
     }
 
-    // Call this when Player enters the End Zone
+    // Call this when Player enters the End Zone (Level 1)
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -33,21 +35,44 @@ public class LevelManager : MonoBehaviour
 
     public void ShowVictory()
     {
-        Debug.Log("LEVEL FINISHED! Showing Victory Screen.");
-        if (victoryCanvas) victoryCanvas.SetActive(true);
+        Debug.Log("LEVEL 1 FINISHED! Showing Victory Screen.");
+        if (level1Canvas) level1Canvas.SetActive(true);
+        if (audioSource && victorySound) audioSource.PlayOneShot(victorySound);
+    }
+    
+    public void ShowVictoryLevel2()
+    {
+        Debug.Log("LEVEL 2 FINISHED! Showing Victory Screen.");
+        if (level2Canvas) level2Canvas.SetActive(true);
         if (audioSource && victorySound) audioSource.PlayOneShot(victorySound);
     }
 
-    // BUTTON 1: NEXT LEVEL
+    // BUTTON 1: NEXT LEVEL (From Level 1)
     public void GoToNextLevel()
     {
         TeleportTo(level2SpawnPoint);
+        if (level1Canvas) level1Canvas.SetActive(false);
     }
 
     // BUTTON 2: REPLAY LEVEL 1
     public void ReplayLevel()
     {
         TeleportTo(level1SpawnPoint);
+        if (level1Canvas) level1Canvas.SetActive(false);
+    }
+
+    // BUTTON 3: REPLAY LEVEL 2
+    public void ReplayLevel2()
+    {
+        TeleportTo(level2SpawnPoint);
+        if (level2Canvas) level2Canvas.SetActive(false);
+    }
+
+    // BUTTON 4: RETURN TO LEVEL 1 (From Level 2)
+    public void ReturnToLevel1()
+    {
+        TeleportTo(level1SpawnPoint);
+        if (level2Canvas) level2Canvas.SetActive(false);
     }
 
     private void TeleportTo(Transform target)
@@ -64,8 +89,10 @@ public class LevelManager : MonoBehaviour
 
             if (cc) cc.enabled = true;
 
-            // Hide UI after teleport
-            if (victoryCanvas) victoryCanvas.SetActive(false);
+            // Robust Fix: Force close both panels whenever we teleport
+            // This handles cases where the user might have assigned the wrong button event
+            if (level1Canvas) level1Canvas.SetActive(false);
+            if (level2Canvas) level2Canvas.SetActive(false);
         }
         else
         {

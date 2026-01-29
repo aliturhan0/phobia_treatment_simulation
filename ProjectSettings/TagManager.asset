@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bridge
   - Hand
+  - WoodenBridge
+  - WoodenStep
   layers:
   - Default
   - TransparentFX
