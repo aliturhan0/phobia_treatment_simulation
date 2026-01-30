@@ -922,17 +922,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214639712}
-  m_LocalRotation: {x: -0, y: -0.69612586, z: -0, w: 0.7179198}
+  m_LocalRotation: {x: -0, y: -0.73879725, z: -0, w: 0.67392784}
   m_LocalPosition: {x: 0, y: 0, z: 29.08}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 241633772}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -88.234, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -95.258, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -37.79, y: -63.13}
+  m_AnchoredPosition: {x: -37.94, y: -62.35}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214639717
@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052, y: 0.26426044}
   m_AnchorMax: {x: 0.953516, y: 0.77275544}
-  m_AnchoredPosition: {x: -4.9281616, y: -19.870358}
+  m_AnchoredPosition: {x: -4.9281616, y: -19.870361}
   m_SizeDelta: {x: 188.66295, y: 530.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241633773
@@ -7836,6 +7836,10 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Name
       value: XR Device Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
