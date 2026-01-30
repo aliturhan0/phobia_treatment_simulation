@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Added for Scene Loading
 
 public class LevelManager : MonoBehaviour
 {
@@ -73,6 +74,13 @@ public class LevelManager : MonoBehaviour
     {
         TeleportTo(level1SpawnPoint);
         if (level2Canvas) level2Canvas.SetActive(false);
+    }
+
+    // BUTTON 5: MAIN MENU (Loads Scene 0)
+    public void LoadMainMenu()
+    {
+        Debug.Log("Loading Main Menu...");
+        SceneManager.LoadScene(0);
     }
 
     private void TeleportTo(Transform target)

@@ -36,6 +36,16 @@ public class FallRespawnManager : MonoBehaviour
     void Start()
     {
         if (playerRoot) lastPosition = playerRoot.position;
+
+        // --- VR FIX START: Sadece Efekt Canvaslari Icin ---
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
+        {
+            if (whiteScreenGroup) FixCanvasForVR(whiteScreenGroup.GetComponentInParent<Canvas>(), mainCam);
+            if (speedLinesGroup) FixCanvasForVR(speedLinesGroup.GetComponentInParent<Canvas>(), mainCam);
+        }
+        // --------------------------------------------------
+
         if (whiteScreenGroup)
         {
             whiteScreenGroup.alpha = 0f;
@@ -49,6 +59,33 @@ public class FallRespawnManager : MonoBehaviour
         if (windParticleSystem)
         {
             windParticleSystem.Stop();
+        }
+    }
+
+    // Sadece verilen canvas'i VR uyumlu yapar, digerlerine dokunmaz
+    void FixCanvasForVR(Canvas cvs, Camera cam)
+    {
+        if (cvs != null)
+        {
+            cvs.renderMode = RenderMode.ScreenSpaceCamera;
+            cvs.worldCamera = cam;
+            cvs.planeDistance = 0.5f; // Gozun 50cm onunde
+            cvs.sortingOrder = 999;   // En on sirada
+
+            // Fix Edge Gap: Force the content to be larger than the screen
+            // We iterate through immediate children (which should be the Panels)
+            foreach (Transform child in cvs.transform)
+            {
+                RectTransform rect = child.GetComponent<RectTransform>();
+                if (rect != null)
+                {
+                    // Stretch anchors way beyond 0-1
+                    rect.anchorMin = new Vector2(-0.2f, -0.2f);
+                    rect.anchorMax = new Vector2(1.2f, 1.2f);
+                    rect.offsetMin = Vector2.zero;
+                    rect.offsetMax = Vector2.zero;
+                }
+            }
         }
     }
 

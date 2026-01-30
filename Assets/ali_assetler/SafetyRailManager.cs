@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem; 
+// using UnityEngine.XR; // REMOVED to avoid ambiguity with InputSystem
 using System.Collections;
 
 public class SafetyRailManager : MonoBehaviour
@@ -50,12 +51,53 @@ public class SafetyRailManager : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        if (toggleButtonInput.action != null)
+            toggleButtonInput.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        if (toggleButtonInput.action != null)
+            toggleButtonInput.action.Disable();
+    }
+
+    private bool wasPressedLastFrame = false;
+
     void Update()
     {
         // Debug Key: 'M'
         if (Input.GetKeyDown(KeyCode.M)) ToggleSafety();
 
+        bool pressed = false;
+
+        // 1. Try New Input System Action
         if (toggleButtonInput.action != null && toggleButtonInput.action.WasPressedThisFrame())
+        {
+            pressed = true;
+        }
+
+        // 2. Fallback: Try Direct XR Device (Right Controller 'A' Button / Primary)
+        // using Fully Qualified Names to avoid Ambiguity with InputSystem
+        if (!pressed)
+        {
+            UnityEngine.XR.InputDevice device = UnityEngine.XR.InputDevices.GetDeviceAtXRNode(UnityEngine.XR.XRNode.RightHand);
+            if (device.isValid)
+            {
+                if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool primaryPressed))
+                {
+                    // Check for "Down" event manually
+                    if (primaryPressed && !wasPressedLastFrame)
+                    {
+                        pressed = true;
+                    }
+                    wasPressedLastFrame = primaryPressed;
+                }
+            }
+        }
+
+        if (pressed)
         {
             ToggleSafety();
         }

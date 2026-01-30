@@ -17,7 +17,7 @@ public class DususAlgilayici : MonoBehaviour
     public float bekleSuresi = 1f;
 
     private bool dustu = false;
-    private bool aktif = false;
+    private bool aktif = false; // IsinlanmaNoktasi scripti AktifEt() çağıracak
     private Image fadePanel;
 
     void Start()
@@ -106,7 +106,7 @@ public class DususAlgilayici : MonoBehaviour
         float timer = 0f;
         while (timer < beyazlasmaSuresi)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime; // unscaled çünkü timeScale 0 olabilir
             float alpha = Mathf.Lerp(0f, 1f, timer / beyazlasmaSuresi);
             fadePanel.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
@@ -114,10 +114,11 @@ public class DususAlgilayici : MonoBehaviour
         fadePanel.color = new Color(1f, 1f, 1f, 1f); // Tam beyaz
 
         // 2. Beyaz ekranda bekle
-        yield return new WaitForSeconds(bekleSuresi);
+        yield return new WaitForSecondsRealtime(bekleSuresi); // Realtime kullan
 
-        // 3. Sahneyi yeniden yükle (her şey resetlenir)
-        Debug.Log("Sahne yeniden yükleniyor...");
+        // 3. Sahneyi sıfırla
+        Debug.Log("Oyuncu düştü! Sahne sıfırlanıyor...");
+        Time.timeScale = 1f; // TimeScale'i düzelt
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
