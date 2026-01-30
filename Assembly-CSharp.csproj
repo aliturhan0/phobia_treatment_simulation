@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scenes\Onur Assets\ArabaTrafik.cs" />
     <Compile Include="Assets\ali_assetler\RoomScaleEnforcer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\ali_assetler\MainMenuButton.cs" />
     <Compile Include="Assets\Scenes\Onur Assets\DususAlgilayici.cs" />
     <Compile Include="Assets\ali_assetler\ExitDoorTrigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
