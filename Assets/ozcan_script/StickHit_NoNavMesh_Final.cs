@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Collider))]
 public class StickHit_NoNavMesh_Final : MonoBehaviour
@@ -28,8 +29,22 @@ public class StickHit_NoNavMesh_Final : MonoBehaviour
     [Range(0f, 1f)]
     public float popVolume = 0.8f;
 
+    [Header("HAPTIC FEEDBACK (TİTREŞİM)")]
+    [Tooltip("Vuruş anında titreşim şiddeti (0-1)")]
+    [Range(0f, 1f)]
+    public float hitHapticIntensity = 0.6f;
+    
+    [Tooltip("Titreşim süresi (saniye)")]
+    public float hitHapticDuration = 0.15f;
+    
+    [Tooltip("Ölüm vuruşunda ekstra güçlü titreşim")]
+    [Range(0f, 1f)]
+    public float killHapticIntensity = 1.0f;
+    public float killHapticDuration = 0.3f;
+
     private Vector3 _lastPos;
     private Vector3 _velocity;
+    private XRBaseInteractable _interactable;
 
     private readonly Dictionary<int, float> _lastHitTime = new();
     private readonly Dictionary<int, int> _hitCount = new();
@@ -37,6 +52,7 @@ public class StickHit_NoNavMesh_Final : MonoBehaviour
     void Start()
     {
         _lastPos = transform.position;
+        _interactable = GetComponent<XRBaseInteractable>();
     }
 
     void FixedUpdate()
@@ -74,6 +90,9 @@ public class StickHit_NoNavMesh_Final : MonoBehaviour
         // 💀 ÖLÜM
         if (isFinalHit)
         {
+            // 🎮 GÜÇLÜ TİTREŞİM (öldürme anında)
+            SendHapticFeedback(killHapticIntensity, killHapticDuration);
+
             // 🔴 Particle
             if (deathParticlePrefab != null)
             {
@@ -102,6 +121,9 @@ public class StickHit_NoNavMesh_Final : MonoBehaviour
         }
 
         // --- HAYATTA KALDIYSA SAVRULSUN ---
+        
+        // 🎮 NORMAL TİTREŞİM (vuruş anında)
+        SendHapticFeedback(hitHapticIntensity, hitHapticDuration);
 
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb == null) return;
@@ -125,5 +147,28 @@ public class StickHit_NoNavMesh_Final : MonoBehaviour
         rb.AddForceAtPosition(dir * impulse, hitPoint, ForceMode.Impulse);
 
         rb.angularVelocity *= 0.6f;
+    }
+
+    /// <summary>
+    /// Controller'a haptic feedback (titreşim) gönderir
+    /// </summary>
+    private void SendHapticFeedback(float intensity, float duration)
+    {
+        if (_interactable == null) return;
+
+        // XR Grab Interactable'dan tutan el'i bul
+        var grabInteractable = _interactable as XRGrabInteractable;
+        if (grabInteractable != null && grabInteractable.isSelected)
+        {
+            foreach (var interactor in grabInteractable.interactorsSelecting)
+            {
+                var controller = interactor as XRBaseControllerInteractor;
+                if (controller != null && controller.xrController != null)
+                {
+                    controller.xrController.SendHapticImpulse(intensity, duration);
+                    Debug.Log($"[Sopa] 🎮 Haptic feedback: {intensity} şiddet, {duration}s");
+                }
+            }
+        }
     }
 }
