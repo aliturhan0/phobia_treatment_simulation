@@ -25,8 +25,19 @@ Kullanıcılar güvenli bir sanal ortamda korkularıyla yüzleşerek, kontrollü
 ## 🎯 Özellikler
 
 ### 🏔️ Yükseklik Fobisi (Acrophobia)
+
+**🌲 Doğal Ortam - Vadi Köprüsü:**
 - **Seviye 1:** Güvenli köprü geçişi - Başlangıç seviyesi
 - **Seviye 2:** Yüksek platform deneyimi - İleri seviye
+- Kocaman bir vadi üzerinde asma köprü deneyimi
+- Doğal manzara ve derin uçurum
+
+**🏙️ Şehir Ortamı - Gökdelen:**
+- Yüksek gökdelen çatısında deneyim
+- Modern şehir manzarası
+- Cam zeminli platform
+
+**⚙️ Ortak Özellikler:**
 - **Güvenlik Rayları:** Açılıp kapanabilen korkuluklar
 - **Düşme Respawn:** Düşme durumunda güvenli geri dönüş
 - **Vignette Efekti:** Kenar kararması ile korku göstergesi
