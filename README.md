@@ -154,9 +154,11 @@ Assets/
 
 ---
 
-## 👥 Katkıda Bulunanlar
+## 👥 Proje Ekibi
 
-- **Proje Ekibi** - Geliştirme ve Tasarım
+- **Ali Turhan** - Geliştirme ve Tasarım
+- **Onuralp Akkurt** - Geliştirme ve Tasarım
+- **Özcan Yıldıral** - Geliştirme ve Tasarım
 
 ---
 
