@@ -1,0 +1,11 @@
+newmtl Solid
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Shoe4_50k_ray_Albedo.jpg
+map_Ks Shoe4_50k_ray_Gloss.jpg
+map_bump Shoe4_50k_ray_Normal.png

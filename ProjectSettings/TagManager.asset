@@ -8,11 +8,12 @@ TagManager:
   - Hand
   - WoodenBridge
   - WoodenStep
+  - Spider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
