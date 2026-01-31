@@ -10,9 +10,13 @@ public class ClaustroTriggerStart : MonoBehaviour
     public Transform duvar3; // SADECE Z
     public Transform duvar4; // SADECE X
 
+    [Header("TAVAN")]
+    public Transform tavan;  // ✅ TAVAN - SADECE Y ekseni (aşağı iner)
+    public float tavanMoveAmount = 2.5f; // Tavan 2.5 birim inecek (aynı kalıyor)
+
     [Header("DARALMA AYARLARI")]
-    public float moveDuration = 3f;
-    public float moveAmount = 2f; // ✅ 2 birim yaklaşma
+    public float moveDuration = 8f; // 8 saniye daralma
+    public float moveAmount = 7f;   // ✅ 7 birim yaklaşma (DAHA SIKIŞIK!)
 
     [Header("MERKEZ (opsiyonel)")]
     public Transform merkez; // boşsa 4 duvarın ortalaması alınır
@@ -21,35 +25,38 @@ public class ClaustroTriggerStart : MonoBehaviour
     public LayerMask playerLayer;
 
     [Header("XR ORIGIN (TELEPORT)")]
-    public XROrigin xrOrigin;         // Inspector'dan XR Origin'i sürükle (önerilen)
-    public float waitAfterShrink = 5f; // ✅ daralma bitince kaç sn beklesin
+    public XROrigin xrOrigin; // Inspector'dan XR Origin'i sürükle
 
-    [Header("SES (DARALIRKEN)")]
-    public AudioSource shrinkAudioSource; // içine ses koyduğun AudioSource
-    public bool loopSoundWhileShrinking = true;
-    public bool stopAudioWhenDone = true;
+    [Header("BİTİŞ AYARLARI")]
+    public float waitAfterShrink = 5f; // ✅ daralma bitince 5 sn bekle
+
+    [Header("KALP SESİ (TÜM SÜRE BOYUNCA)")]
+    public AudioSource heartbeatAudioSource; // Kalp sesi AudioSource
+    public bool loopHeartbeat = true;        // Sürekli loop
 
     private bool started = false;
-
-    // Sahneye ilk girilen başlangıç pozisyonu (kamera dünya konumu)
     private Vector3 startCameraWorldPos;
     private bool startPosSaved = false;
 
     void Start()
     {
-        // xrOrigin otomatik bulmayı dener ama en sağlamı inspector'dan bağlamak
+        // XR Origin bul
         if (xrOrigin == null)
             xrOrigin = FindObjectOfType<XROrigin>();
 
+        // Başlangıç konumunu kaydet
         if (xrOrigin != null && xrOrigin.Camera != null)
         {
             startCameraWorldPos = xrOrigin.Camera.transform.position;
             startPosSaved = true;
-            Debug.Log("[Claustro] Başlangıç kamera konumu kaydedildi: " + startCameraWorldPos);
+            Debug.Log("[Claustro] Başlangıç konumu kaydedildi: " + startCameraWorldPos);
         }
-        else
+
+        // Ses başlangıçta kapalı olsun
+        if (heartbeatAudioSource != null)
         {
-            Debug.LogWarning("[Claustro] XROrigin veya Camera bulunamadı! xrOrigin'i inspector'dan bağla.");
+            heartbeatAudioSource.loop = loopHeartbeat;
+            heartbeatAudioSource.Stop();
         }
     }
 
@@ -62,37 +69,44 @@ public class ClaustroTriggerStart : MonoBehaviour
             return;
 
         started = true;
-        StartCoroutine(ShrinkThenWaitThenReturnToStart());
+        StartCoroutine(ShrinkWaitAndTeleportBack());
     }
 
-    IEnumerator ShrinkThenWaitThenReturnToStart()
+    IEnumerator ShrinkWaitAndTeleportBack()
     {
-        // ====== SES BAŞLAT ======
-        if (shrinkAudioSource != null)
+        // ====== KALP SESİ BAŞLAT ======
+        if (heartbeatAudioSource != null)
         {
-            shrinkAudioSource.loop = loopSoundWhileShrinking;
-            shrinkAudioSource.Play();
+            heartbeatAudioSource.loop = loopHeartbeat;
+            heartbeatAudioSource.Play();
+            Debug.Log("[Claustro] 💓 Kalp sesi başladı!");
         }
 
-        // ====== DARALMA (EKSEN KISITLI) ======
+        // ====== DARALMA (5 SANİYE) ======
         Vector3 p1 = duvar1.position;
         Vector3 p2 = duvar2.position;
         Vector3 p3 = duvar3.position;
         Vector3 p4 = duvar4.position;
+        Vector3 pTavan = (tavan != null) ? tavan.position : Vector3.zero;
 
         Vector3 center = (merkez != null) ? merkez.position : (p1 + p2 + p3 + p4) / 4f;
 
         // Merkeze doğru işaretler
-        float d1zDir = Mathf.Sign(center.z - p1.z); // duvar1 Z
-        float d3zDir = Mathf.Sign(center.z - p3.z); // duvar3 Z
-        float d2xDir = Mathf.Sign(center.x - p2.x); // duvar2 X
-        float d4xDir = Mathf.Sign(center.x - p4.x); // duvar4 X
+        float d1zDir = Mathf.Sign(center.z - p1.z);
+        float d3zDir = Mathf.Sign(center.z - p3.z);
+        float d2xDir = Mathf.Sign(center.x - p2.x);
+        float d4xDir = Mathf.Sign(center.x - p4.x);
 
-        // Hedefler: SADECE ilgili eksen değişir
-        Vector3 t1 = new Vector3(p1.x, p1.y, p1.z + d1zDir * moveAmount);              // duvar1: Z
-        Vector3 t3 = new Vector3(p3.x, p3.y, p3.z + d3zDir * moveAmount);              // duvar3: Z
-        Vector3 t2 = new Vector3(p2.x + d2xDir * moveAmount, p2.y, p2.z);              // duvar2: X
-        Vector3 t4 = new Vector3(p4.x + d4xDir * moveAmount, p4.y, p4.z);              // duvar4: X
+        // Hedefler - Duvarlar
+        Vector3 t1 = new Vector3(p1.x, p1.y, p1.z + d1zDir * moveAmount);
+        Vector3 t3 = new Vector3(p3.x, p3.y, p3.z + d3zDir * moveAmount);
+        Vector3 t2 = new Vector3(p2.x + d2xDir * moveAmount, p2.y, p2.z);
+        Vector3 t4 = new Vector3(p4.x + d4xDir * moveAmount, p4.y, p4.z);
+        
+        // Hedef - Tavan (aşağı iner)
+        Vector3 tTavan = (tavan != null) ? new Vector3(pTavan.x, pTavan.y - tavanMoveAmount, pTavan.z) : Vector3.zero;
+
+        Debug.Log("[Claustro] 🧱 Duvarlar ve tavan daralıyor... (" + moveDuration + " saniye)");
 
         float elapsed = 0f;
         while (elapsed < moveDuration)
@@ -103,51 +117,80 @@ public class ClaustroTriggerStart : MonoBehaviour
             duvar2.position = Vector3.Lerp(p2, t2, t);
             duvar3.position = Vector3.Lerp(p3, t3, t);
             duvar4.position = Vector3.Lerp(p4, t4, t);
+            
+            // Tavan da insin
+            if (tavan != null)
+                tavan.position = Vector3.Lerp(pTavan, tTavan, t);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Final garanti
+        // Final pozisyonlar
         duvar1.position = t1;
         duvar2.position = t2;
         duvar3.position = t3;
         duvar4.position = t4;
+        if (tavan != null)
+            tavan.position = tTavan;
 
-        // ====== SES DURDUR ======
-        if (shrinkAudioSource != null && stopAudioWhenDone)
-            shrinkAudioSource.Stop();
+        Debug.Log("[Claustro] 🧱 Daralma tamamlandı! " + waitAfterShrink + " saniye bekleniyor...");
 
-        // ====== 5 SN BEKLE ======
+        // ====== İÇERDE 5 SANİYE BEKLE (KALP SESİ DEVAM EDİYOR) ======
         yield return new WaitForSeconds(waitAfterShrink);
 
+        // ====== KALP SESİ DURDUR ======
+        if (heartbeatAudioSource != null)
+        {
+            heartbeatAudioSource.Stop();
+            Debug.Log("[Claustro] 💓 Kalp sesi durdu.");
+        }
+
+        // ====== ODA ESKİ HALİNE DÖNSÜN ======
+        Debug.Log("[Claustro] 🔄 Oda eski haline dönüyor...");
+        
+        // Duvarları geri al
+        duvar1.position = p1;
+        duvar2.position = p2;
+        duvar3.position = p3;
+        duvar4.position = p4;
+        
+        // Tavanı geri al
+        if (tavan != null)
+            tavan.position = pTavan;
+
+        Debug.Log("[Claustro] ✅ Oda resetlendi!");
+
         // ====== BAŞLANGIÇ KONUMUNA GERİ IŞINLA ======
-        ReturnToStartPosition();
+        TeleportToStart();
     }
 
-    private void ReturnToStartPosition()
+    private void TeleportToStart()
     {
         if (!startPosSaved)
         {
-            Debug.LogWarning("[Claustro] Başlangıç konumu kaydedilmemiş, geri ışınlanamıyor.");
+            Debug.LogWarning("[Claustro] Başlangıç konumu kaydedilmemiş!");
             return;
         }
 
         if (xrOrigin == null)
         {
-            Debug.LogWarning("[Claustro] xrOrigin boş! Inspector'dan XR Origin'i bağla.");
+            Debug.LogWarning("[Claustro] xrOrigin boş!");
             return;
         }
 
-        // Teleport sırasında CC kapatmak (varsa) çok daha stabil
+        // CharacterController varsa kapat (teleport için)
         CharacterController cc = xrOrigin.GetComponentInChildren<CharacterController>();
         if (cc != null) cc.enabled = false;
 
-        // ✅ XR'a doğru teleport: kamerayı hedef dünya konumuna getir
+        // Geri ışınla
         xrOrigin.MoveCameraToWorldLocation(startCameraWorldPos);
 
         if (cc != null) cc.enabled = true;
 
-        Debug.Log("[Claustro] Başlangıç alanına geri dönüldü.");
+        Debug.Log("[Claustro] ✅ Başlangıç alanına geri ışınlandı!");
+        
+        // Reset for next trigger
+        started = false;
     }
 }
