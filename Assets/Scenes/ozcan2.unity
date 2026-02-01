@@ -7183,7 +7183,7 @@ Transform:
   m_GameObject: {fileID: 429162263}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.148, y: -2.977, z: -8.328}
+  m_LocalPosition: {x: 6.21, y: -2.923, z: -8.241}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22575,6 +22575,10 @@ MonoBehaviour:
   deathParticlePrefab: {fileID: 0}
   popSound: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
   popVolume: 0.8
+  hitHapticIntensity: 0.6
+  hitHapticDuration: 0.15
+  killHapticIntensity: 1
+  killHapticDuration: 0.3
 --- !u!65 &1565560221
 BoxCollider:
   m_ObjectHideFlags: 0
