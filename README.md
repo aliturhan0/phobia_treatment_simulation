@@ -1,177 +1,406 @@
-# 🎮 VR Fobi Tedavi Simülasyonu
-
 <div align="center">
 
-![Unity](https://img.shields.io/badge/Unity-2022.3+-black?style=for-the-badge&logo=unity)
-![VR](https://img.shields.io/badge/VR-Meta%20Quest-blue?style=for-the-badge&logo=oculus)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+# 🧠 VR Phobia Treatment Simulation
 
-**Sanal Gerçeklik ile Fobi Tedavisi - Exposure Therapy Uygulaması**
+### *Conquering Fears Through Virtual Reality*
 
-[🎯 Özellikler](#-özellikler) • [🚀 Kurulum](#-kurulum) • [🎮 Kullanım](#-kullanım) • [📁 Proje Yapısı](#-proje-yapısı)
+<br>
+
+[![Unity](https://img.shields.io/badge/Unity-2022.3+-000000?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
+[![VR](https://img.shields.io/badge/Meta%20Quest-00B0FF?style=for-the-badge&logo=oculus&logoColor=white)](https://www.meta.com/quest/)
+[![XR Toolkit](https://img.shields.io/badge/XR%20Toolkit-2.6.5-purple?style=for-the-badge)](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.6/manual/index.html)
+[![License](https://img.shields.io/badge/License-MIT-00C853?style=for-the-badge)](LICENSE)
+[![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+
+<br>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%">
+
+<br>
+
+> *"Face your fears in a safe virtual environment, overcome them in reality."*
+
+<br>
+
+[🎯 About](#-about) •
+[🌟 Features](#-features) •
+[🚀 Getting Started](#-getting-started) •
+[🎮 Controls](#-controls) •
+[📁 Architecture](#-architecture) •
+[👥 Team](#-team)
 
 </div>
 
----
-
-## 📖 Proje Hakkında
-
-Bu proje, **Sanal Gerçeklik (VR)** teknolojisi kullanarak çeşitli fobilerin tedavisine yardımcı olmak amacıyla geliştirilmiş bir **Exposure Therapy (Maruz Bırakma Terapisi)** simülasyonudur.
-
-Kullanıcılar güvenli bir sanal ortamda korkularıyla yüzleşerek, kontrollü bir şekilde fobilerini aşmayı öğrenebilirler.
+<br>
 
 ---
 
-## 🎯 Özellikler
+<br>
 
-### 🏔️ Yükseklik Fobisi (Acrophobia)
+## 🎯 About
 
-**🌲 Doğal Ortam - Vadi Köprüsü:**
-- **Seviye 1:** Güvenli köprü geçişi - Başlangıç seviyesi
-- **Seviye 2:** Yüksek platform deneyimi - İleri seviye
-- Kocaman bir vadi üzerinde asma köprü deneyimi
-- Doğal manzara ve derin uçurum
+<table>
+<tr>
+<td width="60%">
 
-**🏙️ Şehir Ortamı - Gökdelen:**
-- Yüksek gökdelen çatısında deneyim
-- Modern şehir manzarası
-- Cam zeminli platform
+**VR Phobia Treatment Simulation** is an innovative **Exposure Therapy** application designed to help individuals overcome their fears using cutting-edge Virtual Reality technology.
 
-**⚙️ Ortak Özellikler:**
-- **Güvenlik Rayları:** Açılıp kapanabilen korkuluklar
-- **Düşme Respawn:** Düşme durumunda güvenli geri dönüş
-- **Vignette Efekti:** Kenar kararması ile korku göstergesi
+Millions of people worldwide suffer from phobias that significantly impact their daily lives. Traditional therapy methods can be expensive, inaccessible, or impractical. Our solution brings professional-grade exposure therapy directly to the user through immersive VR experiences.
 
-### 🕷️ Örümcek Fobisi (Arachnophobia)
-- Kontrollü örümcek maruziyeti
-- Kademeli zorluk seviyeleri
+Users can confront their fears in a **completely safe, controlled virtual environment**, gradually building tolerance and developing coping mechanisms at their own pace.
 
-### 🚪 Klastrofobi (Claustrophobia)
-- Daralan oda deneyimi
-- Kapalı alan simülasyonu
+</td>
+<td width="40%">
 
-### 🎛️ Genel Özellikler
-- ✅ Modern VR arayüzü
-- ✅ Kolay navigasyon sistemi
-- ✅ Işınlanma (Teleportation) desteği
-- ✅ VR controller desteği
-- ✅ Dinamik sahne geçişleri
+### 🎪 Supported Phobias
+
+| Phobia | Status |
+|--------|--------|
+| 🏔️ **Acrophobia** | ✅ Complete |
+| 🕷️ **Arachnophobia** | ✅ Complete |
+| 🚪 **Claustrophobia** | ✅ Complete |
+
+</td>
+</tr>
+</table>
+
+<br>
 
 ---
 
-## 🚀 Kurulum
+<br>
 
-### Gereksinimler
-- **Unity 2022.3** veya üzeri
-- **XR Interaction Toolkit** paketi
-- **TextMeshPro** paketi
-- **VR Gözlük** (Meta Quest, HTC Vive, vb.)
-
-### Adımlar
-
-1. **Projeyi klonlayın:**
-```bash
-git clone https://github.com/squichip/vr-proje-son.git
-```
-
-2. **Unity ile açın:**
-   - Unity Hub'ı açın
-   - "Add" butonuna tıklayın
-   - Proje klasörünü seçin
-
-3. **Gerekli paketleri yükleyin:**
-   - Window → Package Manager
-   - XR Interaction Toolkit'i yükleyin
-   - XR Plugin Management'ı yapılandırın
-
-4. **VR cihazınızı bağlayın ve oynatın!**
-
----
-
-## 🎮 Kullanım
-
-### Ana Menü
-- **Yükseklik Fobisi:** Köprü ve platform seviyeleri
-- **Örümcek & Klastrofobi:** Bekleme odasına geçiş
-
-### Kontroller
-| Eylem | Kontrol |
-|-------|---------|
-| Hareket | Sol Joystick |
-| Teleport | Sağ Joystick |
-| Etkileşim | Trigger |
-| Güvenlik Rayı | A Butonu |
-| Menü | Menu Butonu |
-
-### Seviye Geçişleri
-- Bitiş çizgisine ulaşınca panel açılır
-- "Sonraki Seviye" veya "Ana Menü" seçenekleri
-
----
-
-## 📁 Proje Yapısı
-
-```
-Assets/
-├── ali_assetler/
-│   ├── Art/
-│   │   ├── Materials/     # Materyaller
-│   │   ├── Texture/       # Görseller ve ikonlar
-│   │   └── UI/            # Arayüz görselleri
-│   ├── LevelManager.cs         # Seviye yönetimi
-│   ├── FallRespawnManager.cs   # Düşme/respawn sistemi
-│   ├── SafetyRailManager.cs    # Güvenlik rayları
-│   ├── RoomTeleportButton.cs   # Oda geçiş butonu
-│   ├── ExitDoorTrigger.cs      # Çıkış kapısı
-│   ├── MainMenuButton.cs       # Ana menü butonu
-│   └── ForceCameraHeight.cs    # VR kamera yüksekliği
-├── Scenes/
-│   ├── MainMenu.unity     # Ana menü sahnesi
-│   ├── ozcan2.unity       # Fobi odaları sahnesi
-│   └── ...
-└── XR/                    # VR ayarları
-```
-
----
-
-## 🛠️ Teknik Detaylar
-
-### Kullanılan Teknolojiler
-- **Unity Engine** - Oyun motoru
-- **XR Interaction Toolkit** - VR etkileşimleri
-- **TextMeshPro** - UI metinleri
-- **C#** - Scripting
-
-### Ana Scriptler
-
-| Script | Açıklama |
-|--------|----------|
-| `LevelManager.cs` | Seviye geçişleri, panel yönetimi |
-| `FallRespawnManager.cs` | Düşme algılama, respawn, vignette |
-| `SafetyRailManager.cs` | Güvenlik raylarını açma/kapama |
-| `RoomTeleportButton.cs` | Oda geçişleri için ışınlanma |
-| `ForceCameraHeight.cs` | VR kamera yükseklik düzeltmesi |
-
----
-
-## 👥 Proje Ekibi
-
-- **Ali Turhan** - Geliştirme ve Tasarım
-- **Şinasi Onuralp Akkurt** - Geliştirme ve Tasarım
-- **Özcan Yıldıral** - Geliştirme ve Tasarım
-
----
-
-## 📄 Lisans
-
-Bu proje **MIT Lisansı** altında lisanslanmıştır.
-
----
+## 🌟 Features
 
 <div align="center">
 
-**⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın! ⭐**
+### 🏔️ *Acrophobia Module - Heights*
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🌲 Natural Environment - Valley Bridge
+
+Experience crossing a suspension bridge over a deep canyon surrounded by nature.
+
+- **Level 1:** Safe bridge crossing - Beginner friendly
+- **Level 2:** High platform challenge - Advanced exposure
+
+</td>
+<td width="50%">
+
+#### 🏙️ Urban Environment - Skyscraper
+
+Face your fear of heights on a modern skyscraper rooftop.
+
+- Glass floor platform experience
+- Panoramic city views
+- Progressive difficulty settings
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<div align="center">
+
+### 🕷️ *Arachnophobia Module - Spiders*
+
+</div>
+
+<table>
+<tr>
+<td align="center">
+
+🕸️ Controlled spider exposure with gradual intensity levels
+
+Start with distant, static spiders and progress to closer, more realistic encounters
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<div align="center">
+
+### 🚪 *Claustrophobia Module - Enclosed Spaces*
+
+</div>
+
+<table>
+<tr>
+<td align="center">
+
+📦 Shrinking room experience with customizable compression rates
+
+Experience enclosed spaces that gradually become smaller, building tolerance over time
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<br>
+
+<div align="center">
+
+### ⚙️ *Therapeutic Safety Features*
+
+</div>
+
+<br>
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 🛡️
+**Safety Rails**
+<br><br>
+Toggle-able guardrails for comfort during height exposure
+
+</td>
+<td align="center" width="25%">
+
+### 🔄
+**Fall Respawn**
+<br><br>
+Automatic safe recovery when falling occurs
+
+</td>
+<td align="center" width="25%">
+
+### 🌑
+**Vignette Effect**
+<br><br>
+Screen darkening as fear indicator and motion sickness prevention
+
+</td>
+<td align="center" width="25%">
+
+### 💓
+**Heartbeat Audio**
+<br><br>
+Immersive heartbeat sound that intensifies with proximity to fear triggers
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<br>
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+| Requirement | Version |
+|------------|---------|
+| Unity | 2022.3 LTS or higher |
+| XR Interaction Toolkit | 2.6.5+ |
+| VR Headset | Meta Quest / HTC Vive / Any OpenXR Compatible |
+
+<br>
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/aliturhan0/phobia_treatment_simulation.git
+
+# Open with Unity Hub
+# 1. Launch Unity Hub
+# 2. Click "Add" button
+# 3. Navigate to the cloned folder
+# 4. Select and open the project
+```
+
+<br>
+
+### First Run Setup
+
+1. Go to **Window → Package Manager**
+2. Install **XR Interaction Toolkit** if not present
+3. Go to **Edit → Project Settings → XR Plug-in Management**
+4. Enable your VR platform (Oculus, OpenXR, etc.)
+5. Connect your VR headset
+6. Press **Play** ▶️
+
+<br>
+
+---
+
+<br>
+
+## 🎮 Controls
+
+<div align="center">
+
+| Action | Control |
+|:------:|:-------:|
+| **Movement** | Left Joystick |
+| **Teleport** | Right Joystick |
+| **Interact** | Trigger Button |
+| **Toggle Safety Rails** | A Button |
+| **Open Menu** | Menu Button |
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 📁 Architecture
+
+```
+📦 phobia_treatment_simulation
+ ┣ 📂 Assets
+ ┃ ┣ 📂 ali_assetler          # Core scripts and assets
+ ┃ ┃ ┣ 📂 Art                 # Materials, textures, UI graphics
+ ┃ ┃ ┣ 📂 Audio               # Sound effects (heartbeat, footsteps)
+ ┃ ┃ ┣ 📂 Editor              # Unity Editor extensions
+ ┃ ┃ ┣ 📂 UI                  # UI components and hover effects
+ ┃ ┃ ┣ 📜 LevelManager.cs           # Level progression system
+ ┃ ┃ ┣ 📜 FallRespawnManager.cs     # Fall detection & respawn
+ ┃ ┃ ┣ 📜 SafetyRailManager.cs      # Safety rail toggle system
+ ┃ ┃ ┣ 📜 MainMenuManager.cs        # Main menu controller
+ ┃ ┃ ┣ 📜 RoomTeleportButton.cs     # Room teleportation
+ ┃ ┃ ┣ 📜 BridgeFootsteps.cs        # Footstep audio system
+ ┃ ┃ ┗ 📜 ...
+ ┃ ┣ 📂 Scenes
+ ┃ ┃ ┣ 🎬 MainMenu.unity      # Main menu scene
+ ┃ ┃ ┣ 🎬 ozcan2.unity        # Phobia rooms scene
+ ┃ ┃ ┗ 🎬 ...
+ ┃ ┗ 📂 XR                    # XR configuration
+ ┣ 📂 Packages
+ ┣ 📂 ProjectSettings
+ ┗ 📜 README.md
+```
+
+<br>
+
+---
+
+<br>
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="150">
+<img src="https://cdn.worldvectorlogo.com/logos/unity-69.svg" width="50" height="50" alt="Unity"/>
+<br><b>Unity</b>
+<br><sub>Game Engine</sub>
+</td>
+<td align="center" width="150">
+<img src="https://cdn.worldvectorlogo.com/logos/c--4.svg" width="50" height="50" alt="C#"/>
+<br><b>C#</b>
+<br><sub>Programming</sub>
+</td>
+<td align="center" width="150">
+<img src="https://img.icons8.com/color/96/000000/virtual-reality.png" width="50" height="50" alt="XR"/>
+<br><b>XR Toolkit</b>
+<br><sub>VR Framework</sub>
+</td>
+<td align="center" width="150">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Archlinux-icon-crystal-64.svg" width="50" height="50" alt="Meta"/>
+<br><b>OpenXR</b>
+<br><sub>VR Standard</sub>
+</td>
+</tr>
+</table>
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 👥 Team
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="250">
+
+### 👨‍💻 Ali Turhan
+**Developer & Designer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/aliturhan0)
+
+</td>
+<td align="center" width="250">
+
+### 👨‍💻 Şinasi Onuralp Akkurt
+**Developer & Designer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/squichip)
+
+</td>
+<td align="center" width="250">
+
+### 👨‍💻 Özcan Yıldıral
+**Developer & Designer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/)
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## 📄 License
+
+<div align="center">
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+<br>
+
+---
+
+<br>
+
+### 💡 *"The only thing we have to fear is fear itself."*
+**— Franklin D. Roosevelt**
+
+<br>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%">
+
+<br>
+
+**⭐ If you found this project helpful, please consider giving it a star! ⭐**
+
+<br>
 
 Made with ❤️ and Unity
+
+*2025 - VR Phobia Treatment Simulation*
 
 </div>
